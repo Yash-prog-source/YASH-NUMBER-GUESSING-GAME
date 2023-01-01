@@ -1,0 +1,198 @@
+package YashNumberGuessingGame.com;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class YASHNUMBERGUESSINGGAME {
+	
+	int systemInput;
+	double userInput;
+	char GuessTheNumber ;
+	
+	int noOfGuesses = 0;
+	
+	//now we will generating random number in default constructor
+	
+    void Game()
+    {
+    	Random random = new Random();
+    	this.systemInput = random.nextInt(100) + 1;
+    	
+    }
+    
+     //method to take user guesses
+    public boolean takerUserInput (Object GuessNumber1) {
+    	if (noOfGuesses < 10) {
+    		System.out.print("Guess the number :");
+    	    this.userInput = YASHNUMBERGUESSINGGAME.takeIntegerInput(100, null);
+    	     noOfGuesses++;
+    	     return false;
+    	}
+		 
+    	else {
+    		System.out.println("Number of attempts finished...better luck next time/n");
+    		return true;  
+    		 
+    	}
+    }
+    
+     private static double takeIntegerInput(int i, Object object) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//method to check user guess status
+    public  YASHNUMBERGUESSINGGAME(int SystemInput) {
+    	if(SystemInput == userInput) {
+    		System.out.println("Congratulations, you guess the number " + SystemInput + "in" + noOfGuesses + "guesses");
+    		switch(noOfGuesses)
+    		{
+    			
+    			case 1:
+    			 System.out.println("your score is 100");
+    			 break;
+    			 
+    			case 2:
+       			 System.out.println("your score is 90");
+       			 break;
+       			 
+    			case 3:
+       			 System.out.println("your score is 80");
+       			 break;
+       			 
+    			case 4:
+       			 System.out.println("your score is 70");
+       			 break;
+       			 
+    			case 5:
+       			 System.out.println("your score is 60");
+       			 break;
+       			 
+    			case 6:
+       			 System.out.println("your score is 50");
+       			 break;
+       			 
+    			case 7:
+       			 System.out.println("your score is 40");
+       			 break;
+       			 
+    			case 8:
+       			 System.out.println("your score is 30");
+       			 break;
+       			 
+    			case 9:
+       			 System.out.println("your score is 20");
+       			 break;
+       			 
+    			case 10:
+       			 System.out.println("your score is 10");
+       			 break;
+    		
+    		} 
+    		System.out.println();
+    		return ;
+    	}
+    	
+    	
+    	else if ( noOfGuesses < 10  &&  userInput > systemInput) {
+    		if (SystemInput > 10) {
+    			System.out.println("Too high");
+    		}
+    		else {
+    			System.out.println("litle high");
+    		}
+    	}
+    	
+    	else if (  noOfGuesses < 10 && userInput < SystemInput) {
+    		if (SystemInput  -  userInput > 10) {
+    			System.out.println("Too low");
+    		}
+    		else {
+    			System.out.println("little low");
+    		}
+    	}
+    	
+		
+    	return; 
+    	
+    }
+
+} 
+
+ //main class
+public class  GuessTheNumber1 {
+	
+
+
+	public static int takeIntegerInput (int limit, Object system) {
+		int input = 0;
+		boolean flag = false;
+		
+		while (!flag) {
+			try {
+				Scanner sc = new Scanner(System.in);
+				input = sc.nextInt();
+				flag = true;
+				
+				if (flag && input > limit || input < 1) {
+					System.out.println("choose the number between 1 to " + limit);
+					flag = false;
+				}
+			}
+			
+			catch (Exception e) {
+				System.out.println("enetr only integer value");
+				flag = false;
+			}
+		};
+	
+		return input;
+	};
+	
+	// main class
+	public char YASHNUMBERGUESSINGGAME() {
+		//input for start the game
+		System.out.println("1.start the game \n2.Exist ");
+		System.out.println("enter your choice :");
+		int choice = takeIntegerInput(2, null);
+		int nextRound = 1;
+		int noOfRound = 0;
+		
+		if ( choice ==1) {
+			 
+			// to check next round is there or not
+			while (nextRound == 1) {
+				//creating object of game class
+				Game game = new Game();
+				boolean fales;
+				boolean isMatched = fales;
+				boolean isLimitCross = false;
+				System.out.println("\nRound " + ++noOfRound + "starts..");
+				
+				// to check correct guess and limit cross
+				
+				while(!isMatched && !isLimitCross) {
+					isLimitCross = game.takeUserInput();
+					isMatched = game.isCorrectGuess ();
+						
+				}
+				
+				// input for next round
+				System.out.println("1. Next Round \n2. Exist");
+				System.out.println("Enter your choice :");
+				nextRound = takeIntegerInput(2, isLimitCross);
+				if (nextRound  !=1 ) {
+					System.exit(0);
+				}
+					
+			}
+		}
+		
+		else {
+			 System.exit(0);
+		}
+		
+	}
+
+}
+
